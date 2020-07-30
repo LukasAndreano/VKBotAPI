@@ -10,9 +10,10 @@ $data = json_decode(file_get_contents('php://input'));
 // Если это подтверждение, то отправляет ключ CallBack
 if ($data->type == 'confirmation') {
     exit('281c302f'); 
-} else {
-	echo 'ok';
-}
+} 
+
+$vk->SendOK();
+
 // Получаем всю информацию с запроса
 $type = $data->type;
 $message = $data->object->message->text;
