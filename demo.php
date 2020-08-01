@@ -4,7 +4,7 @@
 require_once 'vk.php';
 
 // Настройка класса
-$vk = new VK('a0c1c481b534ac034c4ec33696a4e1555839cac682897ee0d7b1a8d63af68e9f93885cb3ed6a056ab3e58', '5.120');
+$vk = new VK('a0c1c481b534ac034c4ec33696a4e1555839cac682897ee0d7b1a8d63af68e9f93885cb3ed6a056ab3e58', '5.122');
 $data = json_decode(file_get_contents('php://input'));
 
 // Если это подтверждение, то отправляет ключ CallBack
@@ -12,6 +12,7 @@ if ($data->type == 'confirmation') {
     exit('281c302f'); 
 } 
 
+// Отправка OK. Необходимо каждый раз отправлять OK, чтобы сервер VK не повторял запросы
 $vk->SendOK();
 
 // Получаем всю информацию с запроса
