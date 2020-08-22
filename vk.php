@@ -10,7 +10,7 @@ class VK {
 	}
 
 	public function GetUserInfo($user_id) {
-		$user = $this->Request("users.get", array("user_ids" => $user_id, "fields" => "sex"));
+		$user = $this->HttpRequest("users.get", array("user_ids" => $user_id, "fields" => "sex"));
 		return $user;
 	}
 
@@ -132,9 +132,21 @@ class VK {
         return $color;
     }
 
-	private function Request($method, $params=array()) {
-		$request = json_decode(file_get_contents($this->endpoint."/$method?".http_build_query($params)."&access_token=".$this->token."&v=".$this->version), true);
-		return $request;
+    private function Request($method, $params=array()) {
+        $url = $this->endpoint."/$method?";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params)."&access_token=".$this->token."&v=".$this->version);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Cache-Control: no-cache'));
+        curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);
+        $data = curl_exec($ch);
+        curl_close($ch);
+    }
+
+	private function HttpRequest($method, $params=array()) {
+		return $request = json_decode(file_get_contents($this->endpoint."/$method?".http_build_query($params)."&access_token=".$this->token."&v=".$this->version), true);
 	}
 
     public function sendOK(){
