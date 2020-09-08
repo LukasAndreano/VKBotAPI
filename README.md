@@ -94,7 +94,7 @@ $button = ["location"];
 
 #### Кнопка: Callback
 ```php
-$button = ["text", ["type" => 'show_snackbar', "text" => 'Привет мир!'], "Текст кнопки", "green"];
+$button = ["callback", ["type" => 'show_snackbar', "text" => 'Привет мир!'], "Текст кнопки", "green"];
 ```
 Где show_snackbar - тип действия, которое будет совершено при нажатии на кнопку. Доступные варианты:
 - show_snackbar - отображение уведомления (доступно с мобильных устройств)
