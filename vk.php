@@ -146,7 +146,7 @@ class VK {
     }
 
 	private function HttpRequest($method, $params=array()) {
-		return $request = json_decode(file_get_contents($this->endpoint."/$method?".http_build_query($params)."&access_token=".$this->token."&v=".$this->version), true);
+		return $request = json_decode(file_get_contents($this->endpoint."/$method?".http_build_query($params)."&access_token=".$this->token."&v=".$this->version));
 	}
 
     public function sendOK(){
