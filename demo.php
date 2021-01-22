@@ -67,7 +67,7 @@ if ($data->secret == 'YourSecretKeyHere') {
 			$payload = $payload['command'];
 
 			// Реакция на кнопку "Начать" или же на сообщения, которые содержат текст: начать, меню, бот
-			if ($payload == 'start' || mb_strtolower($message) == ('начать' || 'меню' || 'бот')) {
+			if ($payload == 'start' || mb_strtolower($message) == 'Меню') {
 				$vk->SendButton($peer_id, 'Добро пожаловать!', [[$button]], false);
 			}
 
