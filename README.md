@@ -6,7 +6,7 @@
 ```php
 <?php require_once 'vk.php';
 
-$vk = new VK('ТокенСДоступомКСообщениямСообщества', '5.130');
+$vk = new VK('ТокенСДоступомКСообщениямСообщества', '5.131');
 $data = json_decode(file_get_contents('php://input'));
 ```
 
